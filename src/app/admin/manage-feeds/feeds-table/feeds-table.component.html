@@ -1,0 +1,29 @@
+<table class="table table-hover table-responsive">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let feed of feeds; let i = index">
+      <th scope="row">{{ i+1 }}</th>
+      <td>{{ feed.title }}</td>
+      <td>{{ feed.description }}</td>
+      <td><img [src]="feed.path" [alt]="feed.title"></td>
+      <td><button type="button" class="btn btn-outline-warning" (click)="onEditFeed(feed.id)">Edit</button></td>
+      <td><button type="button" class="btn btn-outline-danger" (click)="onShowModal(feed.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+<app-modal *ngIf="showModal"
+  [title]="'Are you sure you want to delete?'"
+  [body]="'This will delete your feed permanently.'"
+  (okay)="onDeleteFeed()"
+  (cross)="showModal = false"
+  (cancel)="showModal = false">
+</app-modal>

@@ -1,0 +1,11 @@
+<main role="main">
+  <carousel [isAnimated]="true">
+    <slide *ngFor="let slide of slides">
+      <img [src]="slide.path" alt="slide" style="display: block; width: 100%;">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>{{ slide.title }}</h3>
+        <p>{{ slide.description }}</p>
+      </div>
+    </slide>
+  </carousel>
+</main>

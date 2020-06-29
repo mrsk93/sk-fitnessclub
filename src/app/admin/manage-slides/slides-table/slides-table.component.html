@@ -1,0 +1,29 @@
+<table class="table table-hover table-responsive">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let slide of slides; let i = index">
+      <th scope="row">{{ i+1 }}</th>
+      <td>{{ slide.title }}</td>
+      <td>{{ slide.description }}</td>
+      <td><img [src]="slide.path" [alt]="slide.title"></td>
+      <td><button type="button" class="btn btn-outline-warning" (click)="onEditSlide(slide.id)">Edit</button></td>
+      <td><button type="button" class="btn btn-outline-danger" (click)="onShowModal(slide.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+<app-modal *ngIf="showModal"
+  [title]="'Are you sure you want to delete?'"
+  [body]="'This will delete your slide permanently.'"
+  (okay)="onDeleteSlide()"
+  (cross)="showModal = false"
+  (cancel)="showModal = false">
+</app-modal>

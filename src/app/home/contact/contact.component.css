@@ -1,0 +1,37 @@
+main{
+  /* color: #053ffe; */
+  color: #5a5a5a;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.20);
+  background-image: url("https://qphs.fs.quoracdn.net/main-qimg-bff9114a97c0f17c63b92c67199c0580");
+  background-size: cover;
+  min-height: 830px;
+}
+
+.formArea{
+  background-color: white;
+  border-radius: 1.5rem;
+  box-shadow: 0px 0px 3px 4px rgba(0, 0, 0, 0.28);
+  margin-bottom: 5rem;
+  padding: 2rem ;
+}
+
+.textArea{
+  background-color: white;
+  border-radius: 1.5rem;
+  box-shadow: 0px 0px 3px 4px rgba(0, 0, 0, 0.28);
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+h2{
+  margin-top: 0rem;
+}
+
+p{
+  margin-bottom: 0rem;
+}
+
+/* input.ng-touched.ng-invalid,textarea.ng-touched.ng-invalid{
+  border: 1px solid red;
+} */
+

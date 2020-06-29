@@ -1,0 +1,12 @@
+<main role="main">
+<!-- Three columns of text below the carousel -->
+<div class="container marketing">
+<div class="row">
+  <div class="col-lg-4" *ngFor="let feed of feeds">
+    <img class="rounded-circle" [src]="feed.path" alt="feed image" width="140" height="140">
+    <h2>{{ feed.title }}</h2>
+    <p>{{ feed.description }}</p>
+  </div><!-- /.col-lg-4 -->
+</div><!-- /.row -->
+</div><!-- /.container -->
+</main>

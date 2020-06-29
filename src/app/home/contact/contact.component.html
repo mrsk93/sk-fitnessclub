@@ -1,0 +1,50 @@
+<main role="main">
+  <div class="container marketing">
+    <hr class="featurette-divider">
+    <div class="row featurette">
+      <div class="col-md-7">
+        <div class="textArea">
+          <h2 class="featurette-heading">Have Some Queries?</h2>
+            <p class="lead">Fill in the details and we will reply you as early as possible.</p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="formArea">
+          <form (ngSubmit)="onFormSubmit(queryForm)" #queryForm = "ngForm" class="needs-validation" [ngClass]="{ 'was-validated' : queryForm.submitted === true}" novalidate>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" #name="ngModel" ngModel name="name" placeholder="John Smith" maxlength="50" required>
+              <div class="invalid-feedback">
+                Please provide a valid name.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="mobile">Mobile No.</label>
+              <input type="tel" class="form-control" id="mobile" #mobile="ngModel" ngModel name="mobileNo" placeholder="987654321" minlength="10" maxlength="10" pattern="[0-9]{10}" required>
+              <div class="invalid-feedback">
+                Please provide a valid mobile.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="emailId">Email address</label>
+              <input type="email" class="form-control" id="emailId" #email="ngModel" ngModel name="emailId" placeholder="name@example.com" maxlength="30" email required>
+              <div class="invalid-feedback">
+                Please provide a valid email-ID.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Query Description</label>
+              <textarea class="form-control" id="description" rows="4" #query="ngModel" ngModel name="description" maxlength="200" required></textarea>
+              <div class="invalid-feedback">
+                Please provide a valid description.
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.container -->
+</main>
+
+
