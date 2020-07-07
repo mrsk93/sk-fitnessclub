@@ -14,12 +14,14 @@ export class ManageMailsComponent implements OnInit,OnDestroy {
   public queryDescription: string;
   private queriesSubscription: Subscription;
   public showDescription = false;
+  public isLoading = true;
 
   constructor(private manageQueries: ManageMailsService) { }
 
   ngOnInit() {
     this.queriesSubscription = this.manageQueries.queries.subscribe(queryData => {
       this.queries = queryData;
+      this.isLoading=false;
     });
     this.manageQueries.getQueries();
   }

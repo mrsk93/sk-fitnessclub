@@ -13,15 +13,21 @@ export class SlidesTableComponent implements OnInit,OnDestroy {
   public slides: Slide[];
   private slideId: string;
   public showModal = false;
+  public isLoading = true;
   private getSlidesSubscription: Subscription;
+  private loaderSubscription: Subscription;
 
   constructor(private slidesTableService: SlidesTableService,
     private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loaderSubscription = this.slidesTableService.isLoading.subscribe(isLoading=> {
+      this.isLoading = isLoading;
+    });
     this.getSlidesSubscription = this.slidesTableService.slides.subscribe(slides => {
       this.slides = slides;
+      this.isLoading = false;
     })
     this.slidesTableService.getSlides();
   }
@@ -41,6 +47,7 @@ export class SlidesTableComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy() {
+    this.loaderSubscription.unsubscribe();
     this.getSlidesSubscription.unsubscribe();
   }
 

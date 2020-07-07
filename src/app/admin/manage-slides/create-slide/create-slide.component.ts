@@ -16,6 +16,7 @@ export class CreateSlideComponent implements OnInit {
   public imagePreview: string;
   private id: string;
   public editMode = false;
+  public isLoading;
 
 
   constructor(private createSlideService: CreateSlideService,
@@ -36,6 +37,7 @@ export class CreateSlideComponent implements OnInit {
     });
     this.route.params.subscribe((params) => {
       if (params["id"]) {
+        this.isLoading = true;
         let slideId;
         this.editMode = true;
         slideId = params["id"];
@@ -47,6 +49,7 @@ export class CreateSlideComponent implements OnInit {
           });
           this.id = slideData._id;
           this.imagePreview = slideData.path;
+          this.isLoading=false;
         });
       } else {
         this.editMode = false;
@@ -75,6 +78,7 @@ export class CreateSlideComponent implements OnInit {
     }else{
       this.createSlideService.createSlide(this.form.value);
     }
+    this.onFormClear();
   }
 
   onFormClear(){

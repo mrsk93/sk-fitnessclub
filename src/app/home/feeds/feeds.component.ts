@@ -18,6 +18,7 @@ export class FeedsComponent implements OnInit,OnDestroy {
   //   { title: "Second Feed", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", path:"../../assets/img/avatar-2.png" },
   //   { title: "Third Feed", description: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.", path:"../../assets/img/avatar-3.png" },
   //   ];
+  public isLoading = true;
   public feeds: Feed[];
   private feedsSubscription: Subscription;
 
@@ -26,6 +27,7 @@ export class FeedsComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.feedsSubscription = this.feedsService.feeds.subscribe(feeds => {
       this.feeds = feeds;
+      this.isLoading = false;
     });
     this.feedsService.getFeeds();
   }

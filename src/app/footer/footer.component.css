@@ -3,3 +3,13 @@ footer{
   padding-top: 1.5rem;
 }
 
+footer a{
+  color: #007bff;
+  cursor: pointer;
+}
+
+footer a:hover{
+  color: #007bff;
+  text-decoration: underline;
+}
+

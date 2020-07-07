@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/shared/http.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Feed } from 'src/app/home/feeds/feed.model';
 import { FeedsTableService } from "src/app/admin/manage-feeds/feeds-table/feeds-table.service";
@@ -21,8 +21,9 @@ export class CreateFeedService {
     feedData.append("title",data.title);
     feedData.append("description",data.description);
     feedData.append("path",data.path,data.title);
+    this.feedsTableService.isLoading.next(true);
     this.http.post(this.backendUrl + 'createFeed',feedData).subscribe(response => {
-      this.toastrService.success('Your Feed was created successfully', response.message,{positionClass:'toast-top-center'});
+      this.toastrService.success('Your Feed was created Successfully', response.message,{positionClass:'toast-top-center'});
       this.feedsTableService.getFeeds();
     },
     error=> {
@@ -50,6 +51,7 @@ export class CreateFeedService {
         path: data.path
       };
     }
+    this.feedsTableService.isLoading.next(true);
     this.http.put(this.backendUrl + 'updateFeed/', feedId, feedData).subscribe(response => {
       this.toastrService.success('Your feed was updated successfully', response.message,{positionClass:'toast-top-center'});
       this.router.navigate(['admin','feeds']);

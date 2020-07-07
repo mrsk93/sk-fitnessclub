@@ -1,17 +1,21 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" routerLink="">SK Fitness Club</a>
+    <!-- <a class="navbar-brand" routerLink="">SK Fitness Club</a> -->
+    <img class="nav-item" src="../../assets/img/mylogo.png" alt="" routerLink="" style="cursor: pointer;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" (click)="isCollapsed = !isCollapsed"
       data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse" [collapse]="isCollapsed">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf = "!isAuthenticated">
           <a class="nav-link" routerLink="/auth">Admin-Login</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active"  *ngIf = "isAuthenticated">
           <a class="nav-link" routerLink="/admin">Manage</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf = "isAuthenticated">
+          <a class="nav-link" routerLink="/" (click)="onLogOut()">Log Out</a>
         </li>
       </ul>
     </div>

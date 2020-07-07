@@ -76,6 +76,11 @@ exports.createQuery = (req,res,next) => {
     res.status(201).json({
       message:'Query Submitted Successfully!'
     });
+  })
+  .catch(error=> {
+    res.status(403).json({
+      message: error
+    });
   });
 };
 

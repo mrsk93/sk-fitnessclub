@@ -6,28 +6,30 @@ const userController = require("../controllers/user");
 
 const adminController = require("../controllers/admin");
 
+const checkAuth = require("../middlewares/check-auth");
+
 const extractImage = require("../middlewares/extract-file");
 
-router.get("/getSlides", userController.getSlides);
+router.get("/getSlides", checkAuth, userController.getSlides);
 
-router.get("/getSlide/:id", userController.getSlide);
+router.get("/getSlide/:id", checkAuth, userController.getSlide);
 
-router.post("/createSlide", extractImage, adminController.createSlide);
+router.post("/createSlide", checkAuth, extractImage, adminController.createSlide);
 
-router.put("/updateSlide/:id", extractImage, adminController.updateSlide);
+router.put("/updateSlide/:id", checkAuth, extractImage, adminController.updateSlide);
 
-router.delete("/deleteSlide/:id", adminController.deleteSlide);
+router.delete("/deleteSlide/:id", checkAuth, adminController.deleteSlide);
 
-router.get("/getFeeds", userController.getFeeds);
+router.get("/getFeeds", checkAuth, userController.getFeeds);
 
-router.get("/getFeed/:id", userController.getFeed);
+router.get("/getFeed/:id", checkAuth, userController.getFeed);
 
-router.post("/createFeed", extractImage, adminController.createFeed);
+router.post("/createFeed", checkAuth, extractImage, adminController.createFeed);
 
-router.put("/updateFeed/:id", extractImage, adminController.updateFeed);
+router.put("/updateFeed/:id", checkAuth, extractImage, adminController.updateFeed);
 
-router.delete("/deleteFeed/:id", adminController.deleteFeed);
+router.delete("/deleteFeed/:id", checkAuth, adminController.deleteFeed);
 
-router.get("/getQueries", adminController.getQueries);
+router.get("/getQueries", checkAuth, adminController.getQueries);
 
 module.exports = router;

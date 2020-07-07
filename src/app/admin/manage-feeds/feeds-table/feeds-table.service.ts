@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class FeedsTableService {
 
   public feeds = new Subject<Feed[]>();
+  public isLoading = new Subject<boolean>();
   private backendUrl = environment.BACKEND_URL + 'admin/';
 
   constructor(private httpService: HttpService,
@@ -40,6 +41,7 @@ export class FeedsTableService {
   }
 
   deleteFeed(id: string){
+    this.isLoading.next(true);
     this.httpService.delete(this.backendUrl + 'deleteFeed/', id).subscribe(response => {
       this.toastrService.success('Feed Deleted!',response.message,{positionClass: 'toast-top-center'});
       this.getFeeds();

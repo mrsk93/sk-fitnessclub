@@ -1,3 +1,17 @@
 .sidebar{
   margin-left: -15px;
 }
+
+@media only screen and (max-width: 600px) {
+  .sidebar-sticky {
+    margin-left: 0;
+    height: 12rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar-sticky {
+    margin-left: 0;
+    height: 12rem;
+  }
+}

@@ -4,7 +4,7 @@ import { environment } from "../../../../environments/environment";
 import { Slide } from 'src/app/home/slider/slide.model';
 import { SlidesTableService } from '../slides-table/slides-table.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class CreateSlideService {
@@ -21,6 +21,7 @@ export class CreateSlideService {
     slideData.append("title",data.title);
     slideData.append("description",data.description);
     slideData.append("path",data.path,data.title);
+    this.slidesTableService.isLoading.next(true);
     this.http.post(this.backendUrl + 'createSlide',slideData).subscribe(response => {
       this.toastrService.success('Your Slide was created successfully', response.message,{positionClass:'toast-top-center'});
       this.slidesTableService.getSlides();
@@ -50,6 +51,7 @@ export class CreateSlideService {
         path: data.path
       };
     }
+    this.slidesTableService.isLoading.next(true);
     this.http.put(this.backendUrl + 'updateSlide/', slideId, slideData).subscribe(response => {
       this.toastrService.success('Your slide was updated successfully', response.message,{positionClass:'toast-top-center'});
       this.router.navigate(['admin','slides']);

@@ -1,4 +1,5 @@
-<main role="main">
+<app-loader *ngIf="isLoading"></app-loader>
+<main *ngIf="!isLoading" role="main">
 <!-- Three columns of text below the carousel -->
 <div class="container marketing">
 <div class="row">

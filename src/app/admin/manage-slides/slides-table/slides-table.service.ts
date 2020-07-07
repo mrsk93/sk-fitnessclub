@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable({ providedIn: 'root' })
 export class SlidesTableService {
   public slides = new Subject<Slide[]>();
+  public isLoading = new Subject<boolean>();
   private backendUrl = environment.BACKEND_URL + 'admin/';
 
   constructor(private httpService: HttpService,
@@ -39,6 +40,7 @@ export class SlidesTableService {
   }
 
   deleteSlide(id: string){
+    this.isLoading.next(true);
     this.httpService.delete(this.backendUrl + 'deleteSlide/', id).subscribe(response => {
       this.toastrService.success('Slide Deleted!',response.message,{positionClass: 'toast-top-center'});
       this.getSlides();

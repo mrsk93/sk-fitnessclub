@@ -19,6 +19,9 @@ export class ContactService {
     this.httpService.post(this.backendUrl + 'createQuery',data).subscribe(response => {
       console.log(response.message);
       this.toastr.success('We will revert you asap.',response.message,{positionClass: 'toast-bottom-right'});
+    },
+    error => {
+      console.log(error.error.message);
     });
   }
 

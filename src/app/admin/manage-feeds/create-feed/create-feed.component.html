@@ -1,5 +1,6 @@
-<h1>{{ editMode ? 'Edit the selected feed' : 'Create a New Feed' }}</h1>
-<form class="needs-validation" [formGroup]="form" #myForm (submit)="onFormSubmit()">
+<app-loader *ngIf="isLoading"></app-loader>
+<h1 *ngIf="!isLoading">{{ editMode ? 'Edit the selected feed' : 'Create a New Feed' }}</h1>
+<form *ngIf="!isLoading" class="needs-validation" [formGroup]="form" #myForm (submit)="onFormSubmit()">
   <div class="form-group">
     <label for="title">Enter Feed Title</label>
     <input type="text" class="form-control" formControlName="title" placeholder="My First Pic" required>

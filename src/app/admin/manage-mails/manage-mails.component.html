@@ -1,6 +1,7 @@
 <h1>Check Your Mails Here</h1>
 <hr>
-<div class="mytable">
+<app-loader *ngIf="isLoading"></app-loader>
+<div *ngIf="!isLoading" class="mytable">
   <table class="table table-hover ">
   <thead class="thead-light">
     <tr>

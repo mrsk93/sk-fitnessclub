@@ -13,7 +13,9 @@ module.exports = (req,res,next) => {
   };
   sgMail.send(msgToUser)
   .catch(error => {
-    console.log(error.response.body);
+    error.response.body.errors.map((error)=>{
+      console.log(error.message);
+    })
   });
 
   const msgToAdmin = {
@@ -25,7 +27,9 @@ module.exports = (req,res,next) => {
   };
   sgMail.send(msgToAdmin)
   .catch(error => {
-    console.log(error.response.body);
+    error.response.body.errors.map((error)=>{
+      console.log(error.message);
+    })
   });
 
   next();

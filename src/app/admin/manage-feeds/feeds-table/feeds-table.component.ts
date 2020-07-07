@@ -14,15 +14,21 @@ export class FeedsTableComponent implements OnInit {
   public feeds: Feed[];
   private feedId: string;
   public showModal = false;
+  public isLoading = true;
   private getFeedsSubscription: Subscription;
+  private loaderSubscription: Subscription;
 
   constructor(private feedsTableService: FeedsTableService,
     private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loaderSubscription = this.feedsTableService.isLoading.subscribe(isLoading=> {
+      this.isLoading = isLoading;
+    });
     this.getFeedsSubscription = this.feedsTableService.feeds.subscribe(feeds => {
       this.feeds = feeds;
+      this.isLoading = false;
     })
     this.feedsTableService.getFeeds();
   }
@@ -42,6 +48,7 @@ export class FeedsTableComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    this.loaderSubscription.unsubscribe();
     this.getFeedsSubscription.unsubscribe();
   }
 

@@ -16,6 +16,7 @@ export class CreateFeedComponent implements OnInit {
   public imagePreview: string;
   private id: string;
   public editMode = false;
+  public isLoading;
 
 
   constructor(private createFeedService: CreateFeedService,
@@ -37,6 +38,7 @@ export class CreateFeedComponent implements OnInit {
     this.route.params.subscribe((params) => {
       if (params["id"]) {
         let feedId;
+        this.isLoading = true;
         this.editMode = true;
         feedId = params["id"];
         this.createFeedService.getFeed(feedId).subscribe(feedData => {
@@ -47,6 +49,7 @@ export class CreateFeedComponent implements OnInit {
           });
           this.id = feedData._id;
           this.imagePreview = feedData.path;
+          this.isLoading = false;
         });
       } else {
         this.editMode = false;
