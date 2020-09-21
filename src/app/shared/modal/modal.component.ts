@@ -8,9 +8,9 @@ import { EventEmitter } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  @ViewChild("modalTitle", {static: true}) modalTitle;
+  // @ViewChild("modalTitle", {static: true}) modalTitle;
 
-  @ViewChild("modalBody", {static: true}) modalBody;
+  // @ViewChild("modalBody", {static: true}) modalBody;
 
   @Input() title: string;
 
@@ -28,8 +28,8 @@ export class ModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.modalTitle.nativeElement.innerHTML = this.title;
-      this.modalBody.nativeElement.innerHTML = this.body;
+    // this.modalTitle.nativeElement.innerHTML = this.title;
+      // this.modalBody.nativeElement.innerHTML = this.body;
     this.button.nativeElement.click();
   }
 
